@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zippy/presentation/screen/payment/widgets/balance_display.dart';
 import 'package:zippy/presentation/screen/payment/widgets/provider_display.dart';
-import 'package:zippy/presentation/widgets/custom_rectangular_button.dart';
-import 'package:zippy/presentation/widgets/custom_text_field.dart';
+import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
+import 'package:zippy/presentation/widget/custom_text_field.dart';
 //import 'package:flutter_bloc/flutter_bloc.dart';
 //import 'package:zippy/presentation/bloc/dashboard/dashboard_cubit.dart';
 

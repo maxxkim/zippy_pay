@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zippy/presentation/bloc/dashboard/dashboard_cubit.dart';
 import 'package:zippy/presentation/screen/dashboard/widgets/dashboard_display.dart';
-import 'package:zippy/presentation/widgets/barcode_scanner_simple.dart';
-import 'package:zippy/presentation/widgets/custom_rectangular_button.dart';
+import 'package:zippy/presentation/widget/barcode_scanner_simple.dart';
+import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
 import 'package:zippy/presentation/screen/history/widgets/transaction_tile.dart';
 
 class DashboardScreen extends StatelessWidget {

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:math';
 import 'package:zippy/presentation/screen/payment/widgets/provider_display.dart';
-import 'package:zippy/presentation/widgets/custom_rectangular_button.dart';
-import 'package:zippy/presentation/widgets/custom_text_field.dart';
+import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
+import 'package:zippy/presentation/widget/custom_text_field.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 //import 'package:flutter_bloc/flutter_bloc.dart';
 class TopUpScreen extends StatelessWidget {
@@ -71,48 +70,13 @@ class TopUpScreen extends StatelessWidget {
   required BuildContext context,
 }) async {
   try {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('payIn');
+    FirebaseFunctions.instance.httpsCallable('payIn');
 
-    String transactionId =  (Random().nextInt(900000) + 100000).toString();
-    print('Calling payIn with payload: ${<String, dynamic>{
-      "merchantId": "2020juegalopro-7j7g",
-      "transactionId": transactionId,
-      "country": "CL",
-      "currency": "CLP",
-      "payMethod": "skin",
-      "documentId": "111111111",
-      "amount": amount,
-      "email": "asdfas@asd.as",
-      "name": "elon musk",
-      "timestamp": DateTime.now().millisecondsSinceEpoch.toString(),
-      "payinExpirationTime": null,
-      "url_OK": "https://www.yourSite.com/okUser",
-      "url_ERROR": "https://www.yourSite.com/errorUser",
-      "objData": {}
-    }}');
 
-    final response = await callable.call(<String, dynamic>{
-      "merchantId": "2020juegalopro-7j7g", // Ensure this value is correct
-      "transactionId": transactionId.toString(),
-      "country": "CL",
-      "currency": "CLP",
-      "payMethod": "skin",
-      "documentId": "111111111",
-      "amount": amount.toString(),  // This should be a valid number
-      "email": "asdfas@asd.as",
-      "name": "elon musk",
-      "timestamp": DateTime.now().millisecondsSinceEpoch.toString(), // Ensure it's sent as a string or int
-      "payinExpirationTime": null, // Set to a valid value if needed
-      "url_OK": "https://www.yourSite.com/okUser",
-      "url_ERROR": "https://www.yourSite.com/errorUser",
-      "objData": {}
-    });
 
-    print('Transaction successful: ${response.data}');
     context.go('/dashboard/TopUp/info'); 
   } catch (e) {
     _showErrorDialog(context, 'Error calling payIn: $e');
-    print(e);
   }
 }
   void _showErrorDialog(BuildContext context, String text) {

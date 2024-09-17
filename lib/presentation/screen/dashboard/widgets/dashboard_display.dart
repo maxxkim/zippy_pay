@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:zippy/presentation/widgets/custom_circular_button.dart';
+import 'package:zippy/presentation/widget/custom_circular_button.dart';
 
 // Предположим, что этот метод запускает URL (например, для кнопок Top Up, Withdraw и т. д.)
 void _launchURL() {

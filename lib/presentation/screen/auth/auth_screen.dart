@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zippy/presentation/bloc/auth/auth_cubit.dart';
-import 'package:zippy/presentation/widgets/custom_rectangular_button.dart';
-import 'package:zippy/presentation/widgets/custom_text_field.dart';
+import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
+import 'package:zippy/presentation/widget/custom_text_field.dart';
 
 class AuthScreen extends StatelessWidget {
   AuthScreen({super.key});
@@ -24,7 +24,6 @@ class AuthScreen extends StatelessWidget {
           child: BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state is AuthFailure) {
-                print(state.message);
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message ?? 'Error')));
               }
               // Показываем диалоговое окно, если код подтверждения отправлен
