@@ -20,8 +20,6 @@ dependencies:
   meta: ^1.15.0
   cloud_functions: ^4.7.6
   uuid: ^4.5.0
-  get_it: ^7.7.0
-  injectable: ^2.4.4
   dio: ^5.7.0
 dev_dependencies:
   flutter_test:

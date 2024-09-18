@@ -1,45 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zippy/presentation/screen/payment/widgets/provider_display.dart';
 import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
 import 'package:zippy/presentation/widget/custom_text_field.dart';
-import 'package:cloud_functions/cloud_functions.dart';
-//import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zippy/domain/state/top_up/top_up_state.dart';
+import 'package:zippy/presentation/bloc/top_up/top_up_cubit.dart';
+
 class TopUpScreen extends StatelessWidget {
-  TopUpScreen({super.key});
+  TopUpScreen({Key? key}) : super(key: key);
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('New TopUp')),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-            const SizedBox(height: 8),
-            const ProviderDisplay(title: 'Top Up', iconData: Icons.money),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: emailController,
-              labelText: 'Email',
-              hintText: 'Enter email',
-              keyboardType: TextInputType.emailAddress, 
+    return BlocProvider(
+      create: (context) => TopUpCubit(context.read()),
+      child: BlocConsumer<TopUpCubit, TopUpState>(
+        listener: (context, state) {
+          if (state.isSuccess) {
+            context.go('/dashboard/TopUp/info');
+          } else if (state.message.isNotEmpty) {
+            _showErrorDialog(context, state.message);
+          }
+        },
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(title: const Text('New TopUp')),
+            body: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(height: 8),
+                  const ProviderDisplay(title: 'Top Up', iconData: Icons.money),
+                  const SizedBox(height: 8),
+                  CustomTextField(
+                    controller: emailController,
+                    labelText: 'Email',
+                    hintText: 'Enter email',
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(height: 8),
+                  CustomTextField(
+                    controller: amountController,
+                    labelText: 'Amount',
+                    hintText: 'Enter amount',
+                    keyboardType: TextInputType.number,
+                  ),
+                  const Spacer(),
+                  RectangularButton(
+                    label: 'Pay',
+                    onPressed: () => _sendTransaction(context),
+                  ),
+                  const SizedBox(height: 8),
+                ],
+              ),
             ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: amountController,
-              labelText: 'Amount',
-              hintText: 'Enter amount',
-              keyboardType: TextInputType.number, // Use number keyboard for amount input
-            ),
-            const Spacer(),
-            RectangularButton(label: 'Pay', onPressed: () => _sendTransaction(context)),
-            const SizedBox(height: 8),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -57,28 +76,24 @@ class TopUpScreen extends StatelessWidget {
       _showErrorDialog(context, 'Please enter a valid amount greater than zero');
       return;
     }
-
-    double parsedAmount = double.parse(amount);
-
-    // Call the payIn function
-    await _callPayIn(email: email, amount: parsedAmount, context: context);
+    print("OK");
+    context.read<TopUpCubit>().getTopUp(
+      merchantId: "2020juegalopro-7j7g",
+      transactionId: DateTime.now().millisecondsSinceEpoch.toString(),
+      country: "CL",
+      currency: "CLP",
+      payMethod: "skin",
+      documentId: "111111111",
+      amount: amount,
+      email: email,
+      name: "User Name", // You might want to add a name field or get it from user profile
+      timestamp: DateTime.now().millisecondsSinceEpoch.toString(),
+      urlOk: "https://www.yourSite.com/okUser",
+      urlError: "https://www.yourSite.com/errorUser",
+      objData: "{}", // Add any additional data as needed
+    );
   }
 
-  Future<void> _callPayIn({
-  required String email,
-  required double amount,
-  required BuildContext context,
-}) async {
-  try {
-    FirebaseFunctions.instance.httpsCallable('payIn');
-
-
-
-    context.go('/dashboard/TopUp/info'); 
-  } catch (e) {
-    _showErrorDialog(context, 'Error calling payIn: $e');
-  }
-}
   void _showErrorDialog(BuildContext context, String text) {
     showDialog(
       context: context,
@@ -94,8 +109,7 @@ class TopUpScreen extends StatelessWidget {
               },
             ),
           ],
-          shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
         );
       },
     );

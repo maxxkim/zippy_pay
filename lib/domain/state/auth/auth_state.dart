@@ -1,4 +1,4 @@
-part of 'auth_cubit.dart';
+part of '../../../presentation/bloc/auth/auth_cubit.dart';
 
 @immutable
 abstract class AuthState {}
