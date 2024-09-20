@@ -26,12 +26,12 @@ exports.payIn = functions.https.onRequest(async (req, res) => {
         objData
     } = req.body;
 
-    if (!merchantId || !transactionId || !amount || !email || !name) {
+    /*if (!merchantId || !transactionId || !amount || !email || !name) {
         return res.status(400).send({ 
             status: 'error', 
             description: 'Missing required fields' 
         });
-    }
+    }*/
 
     const requestData = {
         merchantId,

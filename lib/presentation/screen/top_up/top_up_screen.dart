@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,36 +65,62 @@ class TopUpScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _sendTransaction(BuildContext context) async {
-    String email = emailController.text;
-    String amount = amountController.text;
 
-    if (email.isEmpty || !RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email)) {
-      _showErrorDialog(context, 'Invalid email address');
-      return;
-    }
-    
-    if (amount.isEmpty || double.tryParse(amount) == null || double.parse(amount) <= 0) {
-      _showErrorDialog(context, 'Please enter a valid amount greater than zero');
-      return;
-    }
-    print("OK");
-    context.read<TopUpCubit>().getTopUp(
-      merchantId: "2020juegalopro-7j7g",
-      transactionId: DateTime.now().millisecondsSinceEpoch.toString(),
-      country: "CL",
-      currency: "CLP",
-      payMethod: "skin",
-      documentId: "111111111",
-      amount: amount,
-      email: email,
-      name: "User Name", // You might want to add a name field or get it from user profile
-      timestamp: DateTime.now().millisecondsSinceEpoch.toString(),
-      urlOk: "https://www.yourSite.com/okUser",
-      urlError: "https://www.yourSite.com/errorUser",
-      objData: "{}", // Add any additional data as needed
-    );
+Future<void> _sendTransaction(BuildContext context) async {
+  String email = emailController.text;
+  String amount = amountController.text;
+
+  if (email.isEmpty || !RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email)) {
+    _showErrorDialog(context, 'Invalid email address');
+    return;
   }
+  
+  if (amount.isEmpty || double.tryParse(amount) == null || double.parse(amount) <= 0) {
+    _showErrorDialog(context, 'Please enter a valid amount greater than zero');
+    return;
+  }
+
+  // Create the objData as a Map and then convert it to a JSON string
+  final Map<String, dynamic> objDataMap = {};
+   final String objDataJson = jsonEncode(objDataMap);
+
+  // Create the transaction payload as a Map
+  final Map<String, dynamic> transactionData = {
+    'merchantId': "2020juegalopro-7j7g",
+    'transactionId': DateTime.now().millisecondsSinceEpoch.toString(),
+    'country': "CL",
+    'currency': "CLP",
+    'payMethod': "skin",
+    'documentId': "111111111",
+    'amount': "$amount.00",
+    'email': email,
+    'name': "User Name", // You might want to add a name field or get it from user profile
+    'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),
+    'urlOk': "https://www.yourSite.com/okUser",
+    'urlError': "https://www.yourSite.com/errorUser",
+    'objData': objDataJson, // Use the JSON string here
+  };
+
+  // Print the transaction data
+  print(transactionData);
+
+  // Pass the transactionData to the getTopUp method
+  context.read<TopUpCubit>().getTopUp(
+    merchantId: transactionData['merchantId'] ?? "",
+    transactionId: transactionData['transactionId'] ?? "",
+    country: transactionData['country'] ?? "",
+    currency: transactionData['currency'] ?? "",
+    payMethod: transactionData['payMethod'] ?? "",
+    documentId: transactionData['documentId'] ?? "",
+    amount: transactionData['amount'] ?? "",
+    email: transactionData['email'] ?? "",
+    name: transactionData['name'] ?? "",
+    timestamp: transactionData['timestamp'] ?? "",
+    urlOk: transactionData['urlOk'] ?? "",
+    urlError: transactionData['urlError'] ?? "",
+    objData: transactionData['objData'] ?? "{}",
+  );
+}
 
   void _showErrorDialog(BuildContext context, String text) {
     showDialog(
