@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zippy/presentation/bloc/auth/auth_cubit.dart';
+import 'package:zippy/presentation/theme/theme_cubit.dart';
 import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
 import 'package:zippy/presentation/widget/custom_text_field.dart';
 
@@ -36,7 +37,7 @@ class AuthScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   CustomTextField(controller: phoneController, labelText: "Phone Number", hintText: "Enter phone number"),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   if (state is AuthLoading)
                     const CircularProgressIndicator()
                   else
@@ -44,13 +45,19 @@ class AuthScreen extends StatelessWidget {
                       label: "Login",
                       onPressed: () {
                         final phoneNumber = phoneController.text.trim();
-                context.go('/dashboard');
-
+                        context.go('/dashboard');
                         if (phoneNumber.isNotEmpty) {
                           context.read<AuthCubit>().loginWithPhone(phoneNumber);
                         }
                       },
                     ),
+                    const SizedBox(height: 8),
+                    IconButton(
+                      icon: const Icon(Icons.brightness_6),
+                      onPressed: () {
+                        context.read<ThemeCubit>().toggleTheme();
+                      },
+                    )
                 ],
               );
             },

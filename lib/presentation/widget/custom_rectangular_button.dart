@@ -19,7 +19,7 @@ class RectangularButton extends StatelessWidget {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        backgroundColor: Colors.indigo[900],
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       child: Text(
         label,

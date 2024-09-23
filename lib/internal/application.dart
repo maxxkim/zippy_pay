@@ -1,14 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:zippy/presentation/app_router.dart';
-import 'package:zippy/presentation/app_theme.dart';
+import 'package:zippy/presentation/theme/app_theme.dart';
+import 'package:zippy/presentation/theme/app_theme_dark.dart';
 import 'package:zippy/presentation/bloc/auth/auth_cubit.dart';
 import 'package:zippy/domain/repository/top_up/top_up_repository.dart';
 import 'package:zippy/data/repository/top_up/top_up_data_repository.dart';
 import 'package:zippy/data/api/api_util.dart';
 import 'package:zippy/data/api/service/api_service.dart';
+import 'package:zippy/presentation/theme/theme_cubit.dart';
 
 class ZippyApp extends StatelessWidget {
   const ZippyApp({super.key});
@@ -23,7 +25,7 @@ class ZippyApp extends StatelessWidget {
       child: MultiRepositoryProvider(
         providers: [
           RepositoryProvider<ApiService>(
-            create: (context) => ApiService(), // You might need to pass some parameters here
+            create: (context) => ApiService(),
           ),
           RepositoryProvider<ApiUtil>(
             create: (context) => ApiUtil(
@@ -41,11 +43,18 @@ class ZippyApp extends StatelessWidget {
             BlocProvider(
               create: (context) => AuthCubit(FirebaseAuth.instance),
             ),
+            BlocProvider(
+              create: (context) => ThemeCubit(), // Добавьте ThemeCubit
+            ),
           ],
-          child: MaterialApp.router(
-            routerConfig: appRouter,
-            title: 'Zippy',
-            theme: appTheme,
+          child: BlocBuilder<ThemeCubit, AppTheme>(
+            builder: (context, theme) {
+              return MaterialApp.router(
+                routerConfig: appRouter,
+                title: 'Zippy',
+                theme: (theme == AppTheme.light) ? appTheme : appThemeDark, // Выбор темы
+              );
+            },
           ),
         ),
       ),

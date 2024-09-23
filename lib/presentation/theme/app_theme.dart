@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 final ThemeData appTheme = ThemeData(
   primarySwatch: Colors.blue,
+  primaryColor:  Colors.indigo[900],
   brightness: Brightness.light,
   textTheme: const TextTheme(
     bodySmall: TextStyle(color: Colors.grey, fontSize: 16),
@@ -15,8 +16,8 @@ final ThemeData appTheme = ThemeData(
     backgroundColor: Colors.indigo[900],
     foregroundColor: Colors.white,
   ),
-  buttonTheme: const ButtonThemeData(
-    buttonColor: Colors.blue,
+  buttonTheme:  ButtonThemeData(
+    buttonColor: Colors.indigo[900],
     textTheme: ButtonTextTheme.primary,
   ),
   // Add more theming options here as needed.
