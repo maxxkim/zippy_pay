@@ -1,5 +1,7 @@
+import 'package:zippy/domain/model/withdraw/withdraw_model.dart';
+
 abstract class WithdrawRepository {
-  Future<WithdrawRepository> getWithdraw({
+  Future<Withdraw> getWithdraw({
     required String merchantId,
     required String transactionId,
     required String country,

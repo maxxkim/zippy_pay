@@ -1,7 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zippy/domain/repository/withdraw/withdraw_repository.dart';
 import 'package:zippy/domain/state/withdraw/withdraw_state.dart';
-import 'package:zippy/domain/model/withdraw/withdraw_model.dart';
 
 class WithdrawCubit extends Cubit<WithdrawState> {
   final WithdrawRepository _WithdrawRepository;
@@ -25,7 +26,7 @@ class WithdrawCubit extends Cubit<WithdrawState> {
     required String objData,
   }) async {
     try {
-      final WithdrawRepository withdraw = await _WithdrawRepository.getWithdraw(
+      await _WithdrawRepository.getWithdraw(
         merchantId: merchantId,
         transactionId: transactionId,
         country: country,
@@ -42,7 +43,6 @@ class WithdrawCubit extends Cubit<WithdrawState> {
         objData: objData,
       );
 
-      print(withdraw);
 
       emit(WithdrawState(message: "Top-up successful", isSuccess: true));
     } catch (e) {
