@@ -1,24 +1,187 @@
 import 'package:flutter/material.dart';
 
+const Color blackColor = Color(0xFF1D1D1B);
+const Color aquamarineColor = Color(0xFF52DAC6);
+const Color bluePurpleColor = Color(0xFF0F0A54);
+const Color darkGreyColor = Color(0xFF878787);
+const Color lightGreyColor = Color(0xFFEFEFEF);
+const Color lightAquamarineColor = Color(0xFFDDEEEB);
+const Color midLightAquamarineColor = Color(0xFF8BD8CD);
+const Color greenColor = Color(0xFF4DD0A1);
+const Color redColor = Color(0xFFDC4949);
+const Color whiteColor = Color(0xFFFFFFFF);
+
 final ThemeData appTheme = ThemeData(
-  primarySwatch: Colors.blue,
-  primaryColor:  Colors.indigo[900],
+  primaryColor: bluePurpleColor,
   brightness: Brightness.light,
+  scaffoldBackgroundColor: whiteColor,
+
   textTheme: const TextTheme(
-    bodySmall: TextStyle(color: Colors.grey, fontSize: 16),
-    bodyMedium: TextStyle(color: Colors.grey, fontSize: 20),
-    bodyLarge: TextStyle(color: Colors.grey, fontSize: 24),
-    titleSmall: TextStyle(color: Colors.black, fontSize: 16),
-    titleMedium: TextStyle(color: Colors.black, fontSize: 20),
-    titleLarge: TextStyle(color: Colors.black, fontSize: 24),
+    bodySmall: TextStyle(color: blackColor, fontSize: 12, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    bodyMedium: TextStyle(color: blackColor, fontSize: 14, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    bodyLarge: TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    headlineSmall: TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    headlineMedium: TextStyle(color: blackColor, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
+    labelSmall: TextStyle(color: lightGreyColor, fontSize: 12, fontWeight: FontWeight.w300),
   ),
-  appBarTheme: AppBarTheme(
-    backgroundColor: Colors.indigo[900],
-    foregroundColor: Colors.white,
+
+  appBarTheme: const AppBarTheme(
+    backgroundColor: bluePurpleColor,
+    foregroundColor: whiteColor,
   ),
-  buttonTheme:  ButtonThemeData(
-    buttonColor: Colors.indigo[900],
+
+  buttonTheme: ButtonThemeData(
+    buttonColor: bluePurpleColor,
     textTheme: ButtonTextTheme.primary,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0),
+    ),
+    padding: const EdgeInsets.symmetric(vertical: 16.0),
   ),
-  // Add more theming options here as needed.
+
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: WidgetStateProperty.all(bluePurpleColor),
+      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(vertical: 16.0)),
+      textStyle: WidgetStateProperty.all(
+        const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+          color: whiteColor,
+        ),
+      ),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+      ),
+    ),
+  ),
+
+  inputDecorationTheme: InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderSide: const BorderSide(color: darkGreyColor, width: 1),
+      borderRadius: BorderRadius.circular(15.0),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: darkGreyColor, width: 1),
+      borderRadius: BorderRadius.circular(15.0),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: bluePurpleColor, width: 1),
+      borderRadius: BorderRadius.circular(15.0),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: redColor, width: 1),
+      borderRadius: BorderRadius.circular(15.0),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: redColor, width: 1),
+      borderRadius: BorderRadius.circular(15.0),
+    ),
+    hintStyle: const TextStyle(color: lightGreyColor, fontWeight: FontWeight.w300),
+  ),
+
+  textButtonTheme: TextButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: WidgetStateProperty.all(bluePurpleColor),
+      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(vertical: 8.0)),
+      textStyle: WidgetStateProperty.all(
+        const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 12,
+        ),
+      ),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+          side: const BorderSide(color: bluePurpleColor, width: 1),
+        ),
+      ),
+    ),
+  ),
+
+  sliderTheme: SliderThemeData(
+    activeTrackColor: midLightAquamarineColor,
+    inactiveTrackColor: lightAquamarineColor,
+    thumbColor: bluePurpleColor,
+    overlayColor: bluePurpleColor.withOpacity(0.2),
+  ),
+
+  cardColor: lightAquamarineColor,
+  dialogBackgroundColor: lightGreyColor,
 );
+
+// Основные цвета брендбука:
+// blackColor 1D1D1B
+// aquamarineColor 52DAC6
+// bluePurpleColor 0F0A54
+
+// Дополнительные цвета для светлой темы:
+// darkGreyColor 878787
+// lightGreyColor EFEFEF
+// lightAquamarineColor DDEEEB
+// greenColor 4DD0A1
+// redColor DC4949
+// midLightAquamarineColor 8BD8CD
+// whiteColor FFFFFF
+
+// Шрифты:
+// Roboto black w800, bold, light w300
+
+// Использование в интерфейсе:
+// Основной цвет фона: whiteColor
+// (Этот цвет используется в качестве фонового цвета для всех экранов и областей, где нет дополнительных акцентов)
+
+// Активная кнопка / важная кнопка: bluePurpleColor, font weight bold, font size 16, padding top and bottom 16px, text color whiteColor, border radius 15px
+
+// Неактивная кнопка: border color aquamarineColor, border size 1px, font weight w300, padding top and bottom 16px, text color aquamarineColor, border radius 15px
+
+// Поле ввода: border color darkGreyColor, border size 1px, font weight w300, padding top and bottom 16px, border radius 15px
+
+// Неправильный ввод: border color redColor, border size 1px, font weight w300, padding top and bottom 16px, border radius 15px
+
+// Правильный ввод: border color greenColor, border size 1px, font weight w300, padding top and bottom 16px, border radius 15px
+
+// Кнопки фильтров:
+// Активная кнопка / важная кнопка: bluePurpleColor, font weight bold, font size 12px, padding top and bottom 8px, text color whiteColor, border radius 15px
+
+// Неактивная кнопка: border color bluePurpleColor, border size 1px, font weight w300, padding top and bottom 8px, text color bluePurpleColor, border radius 15px
+
+// Текст:
+// Цвет текста по умолчанию: blackColor
+
+// Описание (маленький текст): font weight w300, font size 12px
+
+// Описание (обычный текст): font weight w300, font size 14px
+
+// Заголовки: font weight w300, font size 16px
+
+// Основные числа: font weight bold, font size 20px
+
+// Маленькие кнопки: font weight bold, font size 8px
+
+// Плейсхолдер в поле ввода: color lightGreyColor
+
+// Активное поле ввода: color blackColor
+
+// Неактивное поле ввода: darkGreyColor
+
+// Тексты транзакций:
+// Заголовок транзакции: font weight bold, font size 10px, color bluePurpleColor
+
+// Текст транзакции: font weight w300, font size 8px, color blackColor
+
+// Сумма дохода: weight bold, font size 12px, color greenColor
+
+// Сумма расходов: weight bold, font size 12px, color redColor
+
+// Слайдеры и скроллы:
+// Цвет фона: midLightAquamarineColor
+
+// Дашборды:
+// Цвет фона: lightAquamarineColor
+// (Фоновый цвет для информационных панелей и кнопок-виджетов)
+
+// Информационные блоки:
+// Цвет фона: lightGreyColor
