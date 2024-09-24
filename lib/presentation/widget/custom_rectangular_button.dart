@@ -16,14 +16,14 @@ class RectangularButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 50),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0), // Закругление углов
         ),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       child: Text(
         label,
-        style: const TextStyle(color: Colors.white, fontSize: 20),
+        style: const TextStyle(color: Colors.white, fontSize: 12),
       ),
     );
   }

@@ -13,8 +13,14 @@ const Color whiteColor = Color(0xFFFFFFFF);
 
 final ThemeData appTheme = ThemeData(
   primaryColor: bluePurpleColor,
+  secondaryHeaderColor: aquamarineColor,
   brightness: Brightness.light,
   scaffoldBackgroundColor: whiteColor,
+
+  colorScheme: const ColorScheme.light(
+    primary: bluePurpleColor,
+    secondary: aquamarineColor, // Установка аквамаринового цвета как вторичного
+  ), 
 
   textTheme: const TextTheme(
     bodySmall: TextStyle(color: blackColor, fontSize: 12, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),

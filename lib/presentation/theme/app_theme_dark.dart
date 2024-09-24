@@ -12,19 +12,24 @@ const Color redColor = Color(0xFFDC4949);
 const Color whiteColor = Color(0xFFFFFFFF);
 
 final ThemeData appThemeDark = ThemeData(
-  primaryColor: bluePurpleColor,
+  primaryColor: aquamarineColor,
   brightness: Brightness.light,
   scaffoldBackgroundColor: whiteColor,
 
   textTheme: const TextTheme(
-    bodySmall: TextStyle(color: blackColor, fontSize: 12, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
-    bodyMedium: TextStyle(color: blackColor, fontSize: 14, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
-    bodyLarge: TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
-    headlineSmall: TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
-    headlineMedium: TextStyle(color: blackColor, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-    labelSmall: TextStyle(color: lightGreyColor, fontSize: 12, fontWeight: FontWeight.w300),
+    bodySmall: TextStyle(color: whiteColor, fontSize: 12, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    bodyMedium: TextStyle(color: whiteColor, fontSize: 14, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    bodyLarge: TextStyle(color: whiteColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    headlineSmall: TextStyle(color: whiteColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    headlineMedium: TextStyle(color: whiteColor, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
+    labelSmall: TextStyle(color: whiteColor, fontSize: 12, fontWeight: FontWeight.w300),
   ),
 
+  colorScheme: const ColorScheme.light(
+    primary: bluePurpleColor,
+    secondary: whiteColor, 
+  ), 
+  
   appBarTheme: const AppBarTheme(
     backgroundColor: bluePurpleColor,
     foregroundColor: whiteColor,
