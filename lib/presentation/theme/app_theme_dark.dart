@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-const Color blackColor = Color(0xFF1D1D1B);
-const Color aquamarineColor = Color(0xFF52DAC6);
-const Color bluePurpleColor = Color(0xFF0F0A54);
-const Color darkGreyColor = Color(0xFF878787);
-const Color lightGreyColor = Color(0xFFEFEFEF);
-const Color lightAquamarineColor = Color(0xFFDDEEEB);
-const Color midLightAquamarineColor = Color(0xFF8BD8CD);
-const Color greenColor = Color(0xFF4DD0A1);
-const Color redColor = Color(0xFFDC4949);
-const Color whiteColor = Color(0xFFFFFFFF);
+const Color blackColor = Colors.red;
+const Color aquamarineColor = Colors.pink;
+const Color bluePurpleColor = Colors.green;
+const Color darkGreyColor = Colors.orange;
+const Color lightGreyColor = Colors.black;
+const Color lightAquamarineColor = Colors.purple;
+const Color midLightAquamarineColor = Colors.yellow;
+const Color greenColor = Colors.teal;
+const Color redColor = Colors.lime;
+const Color whiteColor = Colors.amber;
 
 final ThemeData appThemeDark = ThemeData(
   primaryColor: aquamarineColor,

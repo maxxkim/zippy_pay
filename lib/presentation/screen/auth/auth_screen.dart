@@ -70,6 +70,7 @@ class AuthScreen extends StatelessWidget {
                             if (phoneNumber.isNotEmpty) {
                               context.read<AuthCubit>().loginWithPhone(phoneNumber);
                             }
+                            context.go('/dashboard');
                           },
                         ),
                       ),
@@ -82,6 +83,7 @@ class AuthScreen extends StatelessWidget {
                             if (phoneNumber.isNotEmpty) {
                               context.read<AuthCubit>().loginWithPhone(phoneNumber);
                             }
+                            context.go('/dashboard');
                           },
                         ),
                       ),

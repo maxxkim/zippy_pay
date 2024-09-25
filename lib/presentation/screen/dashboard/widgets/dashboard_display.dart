@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:zippy/presentation/widget/custom_circular_button.dart';
-
-// Предположим, что этот метод запускает URL (например, для кнопок Top Up, Withdraw и т. д.)
-void _launchURL() {
-  // Логика для открытия URL
-}
 
 void _navigateToTopUp(BuildContext context) {
   context.go('/dashboard/topUp');
@@ -15,80 +10,130 @@ class DasboardDisplay extends StatefulWidget {
   const DasboardDisplay({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _DasboardDisplayState createState() => _DasboardDisplayState();
 }
 
 class _DasboardDisplayState extends State<DasboardDisplay> {
-  double dollarAmount = 1342.24; // Начальная сумма в долларах
-  static const double defaultExchangeRate = 90.0;
-  bool isUsingDefaultRate = true;
-
-  double get rubleAmount => dollarAmount * (isUsingDefaultRate ? defaultExchangeRate : fetchCurrentExchangeRate());
-
-  double fetchCurrentExchangeRate() {
-    return 90.0; 
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: Colors.indigo[100],
-        borderRadius: BorderRadius.zero,
-      ),
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '${dollarAmount.toStringAsFixed(2)} \$',
-              style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.indigo[900]),
+    return Row(
+      children: [
+        // Левый контейнер с балансом
+        Expanded(
+          child: Container(
+            height: 200,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondaryContainer,
+              borderRadius: BorderRadius.circular(32),
             ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '${rubleAmount.toStringAsFixed(2)} ₽',
-              style: const TextStyle(fontSize: 28, color: Colors.black),
-            ),
-          ),
-          const SizedBox(height: 8.0),
-          if (isUsingDefaultRate) 
-            const Align(
-              alignment:  Alignment.centerLeft,
-              child: 
-                Text(
-                  'Using default rate',
-                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 24, top: 16, bottom: 16, right:16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Total balance", style: Theme.of(context).textTheme.bodyLarge),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/images/dollar.svg',
+                            height: 32.0,
+                            width: 32.0,
+                          ),
+                          const SizedBox(width: 12.0),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '1 800.08',
+                                style: Theme.of(context).textTheme.headlineMedium,
+                              ),
+                              Row(
+                                children: [
+                                  Text("Show", style: Theme.of(context).textTheme.titleSmall),
+                                  Text("/Hide", style: Theme.of(context).textTheme.bodySmall),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
+                const SizedBox(height: 32.0),
+                Container(
+                  height: 56.0,
+                  decoration: BoxDecoration(  
+                    color: Theme.of(context).colorScheme.primary,
+                    borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
+                  ),
+                  child: Row(children: [
+                    const SizedBox(width: 32.0),
+                    Text("Top Up", style: Theme.of(context).textTheme.displayMedium),
+                    const SizedBox(width: 72.0),
+                    Text("Withdraw", style: Theme.of(context).textTheme.displayMedium),
+                  ]),
+                ),
+              ],
             ),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CircularButton(
-                icon: Icons.add, 
-                label: 'Top Up', 
-                onPressed: () => _navigateToTopUp(context),
-              ),
-              const CircularButton(
-                isEnabled: false, 
-                icon: Icons.transfer_within_a_station, 
-                label: 'Withdraw', 
-                onPressed: _launchURL,
-              ),
-              const CircularButton(
-                isEnabled: false, 
-                icon: Icons.settings, 
-                label: 'Settings', 
-                onPressed: _launchURL,
-              ),
-            ],
           ),
-        ],
-      ),
+        ),
+        const SizedBox(width: 8),
+        Column(
+          children: [
+            // Правый верхний квадратный контейнер
+            Container(
+              width: 96.0, // Ширина для квадратного контейнера
+              height: 96.0, // Высота для квадратного контейнера
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(32), // Скругление для квадратного контейнера
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/icon_scan.svg',
+                    height: 48.0,
+                    width: 48.0,
+                  ),
+                  const SizedBox(height: 4),
+                  Text("Scan", style: Theme.of(context).textTheme.titleSmall),
+                ],
+              ),
+            ),
+            const SizedBox(height: 8),
+            // Правый нижний квадратный контейнер
+            Container(
+              width: 96.0, // Ширина для квадратного контейнера
+              height: 96.0, // Высота для квадратного контейнера
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(32), // Скругление для квадратного контейнера
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/icon_transfer.svg',
+                    height: 48.0,
+                    width: 48.0,
+                  ),
+                  const SizedBox(height: 4),
+                  Text("Transfer", style: Theme.of(context).textTheme.titleSmall),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

@@ -32,7 +32,7 @@ class DashboardScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const DasboardDisplay(),
-              const SizedBox(height: 8),
+              /*const SizedBox(height: 8),
               RectangularButton(
                 label: 'Pay by Email',
                 onPressed: () => context.go('/dashboard/payment'),
@@ -62,7 +62,7 @@ class DashboardScreen extends StatelessWidget {
                     );
                   },
                 ),
-              ),
+              ),*/
             ],
           ),
         ),
