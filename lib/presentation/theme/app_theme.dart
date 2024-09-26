@@ -23,6 +23,7 @@ final ThemeData appTheme = ThemeData(
     secondaryFixed: midLightAquamarineColor, // Установка аквамаринового цвета как вторичного
     secondaryContainer: lightAquamarineColor, 
     tertiary: whiteColor,
+    tertiaryContainer: lightGreyColor,
   ), 
 
   textTheme: const TextTheme(
@@ -35,6 +36,7 @@ final ThemeData appTheme = ThemeData(
     displayMedium: TextStyle(color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     labelSmall: TextStyle(color: lightGreyColor, fontSize: 12, fontWeight: FontWeight.w300),
     labelMedium: TextStyle(color: lightGreyColor, fontSize: 16, fontWeight: FontWeight.w300),
+    labelLarge: TextStyle(color: greenColor, fontSize: 16, fontWeight: FontWeight.bold),
   ),
 
   appBarTheme: const AppBarTheme(

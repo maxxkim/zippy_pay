@@ -25,12 +25,12 @@ class DashboardScreen extends StatelessWidget {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(32.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               const DasboardDisplay(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 32),
               Align(alignment: Alignment.centerLeft, child: Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text('Transactions information',style: Theme.of(context).textTheme.bodyLarge),
@@ -38,8 +38,6 @@ class DashboardScreen extends StatelessWidget {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  OutlinedButton(onPressed: () => print("hui"), child: const Text("None")),
-                  const Spacer(),
                   FilledButton(onPressed: () => print("hui"), child: const Text("Period"),),
                   const Spacer(),
                   OutlinedButton(onPressed: () => print("hui"), child: const Text("Deposit")),
@@ -47,6 +45,7 @@ class DashboardScreen extends StatelessWidget {
                   OutlinedButton(onPressed: () => print("hui"), child: const Text("Withdrawal")),
                 ],
               ),
+              const SizedBox(height: 8),
               const TransactionsInfoDisplay(),
               /*const SizedBox(height: 8),
               RectangularButton(
