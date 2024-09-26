@@ -81,6 +81,7 @@ class AuthTextField extends StatelessWidget {
                   borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary), // Цвет границы при фокусе
                 ),
                 hintText: "+ 66 (119) 345 97 90",
+                hintStyle: Theme.of(context).textTheme.labelMedium,
                 contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0), // Отступы сверху/снизу и слева/справа
               ),
               keyboardType: TextInputType.phone, // Тип клавиатуры для ввода номера

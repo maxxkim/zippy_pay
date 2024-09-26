@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:zippy/presentation/widget/barcode_scanner_simple.dart';
 
-void _navigateToTopUp(BuildContext context) {
-  context.go('/dashboard/topUp');
-}
-
+ 
 class DasboardDisplay extends StatefulWidget {
   const DasboardDisplay({super.key});
 
@@ -21,7 +19,7 @@ class _DasboardDisplayState extends State<DasboardDisplay> {
         // Левый контейнер с балансом
         Expanded(
           child: Container(
-            height: 200,
+            height: 192,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.secondaryContainer,
               borderRadius: BorderRadius.circular(32),
@@ -87,48 +85,60 @@ class _DasboardDisplayState extends State<DasboardDisplay> {
         Column(
           children: [
             // Правый верхний квадратный контейнер
-            Container(
-              width: 96.0, // Ширина для квадратного контейнера
-              height: 96.0, // Высота для квадратного контейнера
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondaryContainer,
-                borderRadius: BorderRadius.circular(32), // Скругление для квадратного контейнера
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    'assets/images/icon_scan.svg',
-                    height: 48.0,
-                    width: 48.0,
-                  ),
-                  const SizedBox(height: 4),
-                  Text("Scan", style: Theme.of(context).textTheme.titleSmall),
-                ],
+            GestureDetector(
+              onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const BarcodeScannerSimple(),
+                    ),
+                  );
+                },
+              child: Container(
+                width: 96.0, // Ширина для квадратного контейнера
+                height: 96.0, // Высота для квадратного контейнера
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                  borderRadius: BorderRadius.circular(32), // Скругление для квадратного контейнера
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/images/icon_scan.svg',
+                      height: 48.0,
+                      width: 48.0,
+                    ),
+                    const SizedBox(height: 4),
+                    Text("Scan", style: Theme.of(context).textTheme.titleSmall),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 8),
             // Правый нижний квадратный контейнер
-            Container(
-              width: 96.0, // Ширина для квадратного контейнера
-              height: 96.0, // Высота для квадратного контейнера
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondaryContainer,
-                borderRadius: BorderRadius.circular(32), // Скругление для квадратного контейнера
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    'assets/images/icon_transfer.svg',
-                    height: 48.0,
-                    width: 48.0,
-                  ),
-                  const SizedBox(height: 4),
-                  Text("Transfer", style: Theme.of(context).textTheme.titleSmall),
-                ],
+            GestureDetector(
+              onTap: () => context.go('/dashboard/payment'),
+              child: Container(
+                width: 96.0, // Ширина для квадратного контейнера
+                height: 96.0, // Высота для квадратного контейнера
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                  borderRadius: BorderRadius.circular(32), // Скругление для квадратного контейнера
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/images/icon_transfer.svg',
+                      height: 48.0,
+                      width: 48.0,
+                    ),
+                    const SizedBox(height: 4),
+                    Text("Transfer", style: Theme.of(context).textTheme.titleSmall),
+                  ],
+                ),
               ),
             ),
           ],

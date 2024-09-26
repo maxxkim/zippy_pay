@@ -3,9 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zippy/presentation/bloc/dashboard/dashboard_cubit.dart';
 import 'package:zippy/presentation/screen/dashboard/widgets/dashboard_display.dart';
-import 'package:zippy/presentation/widget/barcode_scanner_simple.dart';
-import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
-import 'package:zippy/presentation/screen/history/widgets/transaction_tile.dart';
+import 'package:zippy/presentation/screen/dashboard/widgets/transaction_information_display.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -16,7 +14,7 @@ class DashboardScreen extends StatelessWidget {
       create: (_) => DashboardCubit(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Your balance'),
+          title: const Text('Zippy Pay'),
           actions: [
             IconButton(
               icon: const Icon(Icons.logout),
@@ -29,9 +27,27 @@ class DashboardScreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               const DasboardDisplay(),
+              const SizedBox(height: 16),
+              Align(alignment: Alignment.centerLeft, child: Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text('Transactions information',style: Theme.of(context).textTheme.bodyLarge),
+              )),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  OutlinedButton(onPressed: () => print("hui"), child: const Text("None")),
+                  const Spacer(),
+                  FilledButton(onPressed: () => print("hui"), child: const Text("Period"),),
+                  const Spacer(),
+                  OutlinedButton(onPressed: () => print("hui"), child: const Text("Deposit")),
+                  const Spacer(),
+                  OutlinedButton(onPressed: () => print("hui"), child: const Text("Withdrawal")),
+                ],
+              ),
+              const TransactionsInfoDisplay(),
               /*const SizedBox(height: 8),
               RectangularButton(
                 label: 'Pay by Email',
@@ -65,18 +81,6 @@ class DashboardScreen extends StatelessWidget {
               ),*/
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.green[400],
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const BarcodeScannerSimple(),
-              ),
-            );
-          },
-          tooltip: 'Scan QR',
-          child: const Icon(Icons.qr_code_2),
         ),
       ),
     );

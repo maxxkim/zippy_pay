@@ -19,20 +19,22 @@ final ThemeData appTheme = ThemeData(
 
   colorScheme: const ColorScheme.light(
     primary: bluePurpleColor,
-    secondary: aquamarineColor, // Установка аквамаринового цвета как вторичного
+    secondary: aquamarineColor,
+    secondaryFixed: midLightAquamarineColor, // Установка аквамаринового цвета как вторичного
     secondaryContainer: lightAquamarineColor, 
     tertiary: whiteColor,
   ), 
 
   textTheme: const TextTheme(
-    titleSmall: TextStyle(color: bluePurpleColor, fontSize: 12, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-    bodySmall: TextStyle(color: blackColor, fontSize: 12, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    titleSmall: TextStyle(color: bluePurpleColor, fontSize: 8, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
+    bodySmall: TextStyle(color: blackColor, fontSize: 10, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
     bodyMedium: TextStyle(color: blackColor, fontSize: 14, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
     bodyLarge: TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
     headlineSmall: TextStyle(color: bluePurpleColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     headlineMedium: TextStyle(color: bluePurpleColor, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     displayMedium: TextStyle(color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     labelSmall: TextStyle(color: lightGreyColor, fontSize: 12, fontWeight: FontWeight.w300),
+    labelMedium: TextStyle(color: lightGreyColor, fontSize: 16, fontWeight: FontWeight.w300),
   ),
 
   appBarTheme: const AppBarTheme(
