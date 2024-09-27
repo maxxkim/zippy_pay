@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:zippy/presentation/widget/custom_text_field.dart';
 
-class BalanceDisplay extends StatelessWidget {
-  final double amount;
+class TransactionFormDisplay extends StatelessWidget {
 
-  const BalanceDisplay({
+  const TransactionFormDisplay({
     Key? key,
-    required this.amount,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 168,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondaryContainer,
+        color: Theme.of(context).colorScheme.tertiaryContainer,
         borderRadius: BorderRadius.circular(32),
       ),
       child: Column(
@@ -26,22 +24,10 @@ class BalanceDisplay extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Total balance", style: Theme.of(context).textTheme.bodyLarge),
                 const SizedBox(height: 8),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/dollar.svg',
-                      height: 32.0,
-                      width: 32.0,
-                    ),
-                    const SizedBox(width: 12.0),
-                    Text(
-                      '1 800.08',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                  ],
-                ),
+                CustomTextField(controller: TextEditingController(), labelText: 'Mobile number or Email'),
+                const SizedBox(height: 8),
+                CustomTextField(controller: TextEditingController(), labelText: 'Amount'),
               ],
             ),
           ),
@@ -57,14 +43,8 @@ class BalanceDisplay extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center, // Центрируем содержимое
               children: [
                 Text(
-                  "Select from contacts",
+                  "Continue",
                   style: Theme.of(context).textTheme.displayMedium,
-                ),
-                const SizedBox(width: 8), // Отступ между текстом и иконкой
-                const Icon(
-                  Icons.person, // Замените на нужную иконку
-                  color: Colors.white, // Выберите цвет иконки
-                  size: 24.0, // Размер иконки
                 ),
               ],
             ),

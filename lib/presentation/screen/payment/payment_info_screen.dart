@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
 //import 'package:flutter_bloc/flutter_bloc.dart';
 //import 'package:zippy/presentation/bloc/dashboard/dashboard_cubit.dart';
 
@@ -7,99 +9,131 @@ class PaymentInfoScreen extends StatelessWidget {
   const PaymentInfoScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Payment info')),
       body: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center, // Убедитесь, что все элементы центрированы
           children: <Widget>[
+            const SizedBox(height: 24),
+            Center( // Добавлено Center для текста
+              child: Text(
+                'Transaction completed\n successfully!', // Исправлена опечатка
+                textAlign: TextAlign.center, // Центрируем текст
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+            const SizedBox(height: 24),
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.indigo[100],
-                borderRadius: BorderRadius.zero,
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Transaction was successful!',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
-                  const SizedBox(height: 24),
                   Text(
-                    '213.24 \$',
-                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.indigo[900]),
+                    'Top Up',
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  const SizedBox(height: 24),
-                  const Align(
-                    alignment: Alignment.center, // Измените на Alignment.center
+                  const SizedBox(height: 16),
+                  SvgPicture.asset(
+                    'assets/images/icon_tick.svg',
+                    height: 48.0,
+                    width: 48.0,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    '1808.00',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 12),
+                  Align(
+                    alignment: Alignment.center, // Центрируем содержимое
                     child: Row(
-                      mainAxisSize: MainAxisSize.min, // Это поможет Row занимать минимально возможное пространство
+                      mainAxisSize: MainAxisSize.min, 
                       children: [
+                        Text("Balance: ", style: Theme.of(context).textTheme.titleMedium),
                         Text(
                           '1356.32\$',
-                          style: TextStyle(fontSize: 16, color: Colors.black, decoration: TextDecoration.lineThrough),
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            decoration: TextDecoration.lineThrough,
+                          ),
                         ),
-                        Text(" → ", style: TextStyle(fontSize: 16, color: Colors.black)),
+                        Text(" → ", style: Theme.of(context).textTheme.titleMedium),
                         Text(
                           '1342.24\$',
-                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 24),
                 ],
-              )
+              ),
             ),
-            const SizedBox(height: 16),
-             Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      _buildCircularButton(Icons.email, 'Send receipt'),
-                      _buildCircularButton(Icons.info, 'Info'),
+            const SizedBox(height: 32),
+            Center( // Центрируем Row с иконками
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center, // Центрируем содержимое Row
+                children: [
+                  Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/icon_support.svg',
+                        height: 48.0,
+                        width: 48.0,
+                      ),
+                      Text(
+                        'Help',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
                     ],
                   ),
+                  const SizedBox(width: 32),
+                  Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/icon_copy.svg',
+                        height: 48.0,
+                        width: 48.0,
+                      ),
+                      Text(
+                        'Copy',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 32),
+                  Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/icon_share.svg',
+                        height: 48.0,
+                        width: 48.0,
+                      ),
+                      Text(
+                        'Share',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             const Spacer(),
-            ElevatedButton(
+            RectangularButton(
+              label: "Home",
               onPressed: () {
                 context.go('/dashboard');
               },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 50), 
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.zero, 
-                ),
-                backgroundColor: Colors.indigo[900],
-              ),
-              child: const Text(
-                'Ok', 
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
             ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
-    );
-  }
-  Widget _buildCircularButton(IconData icon, String label) {
-    return Column(
-      children: [
-        ElevatedButton(
-          onPressed: () {
-          },
-          style: ElevatedButton.styleFrom(
-            shape: const CircleBorder(),
-            padding: const EdgeInsets.all(16), 
-            backgroundColor: Colors.indigo[900],
-          ),
-          child: Icon(icon, color: Colors.white, size: 30),
-        ),
-        const SizedBox(height: 5),
-        Text(label, style: const TextStyle(color: Colors.black, fontSize: 16)),
-      ],
     );
   }
 }

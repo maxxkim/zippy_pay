@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zippy/presentation/screen/payment/widgets/balance_display.dart';
 import 'package:zippy/presentation/screen/payment/widgets/provider_display.dart';
+import 'package:zippy/presentation/screen/payment/widgets/transaction_form_display.dart';
 import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
 import 'package:zippy/presentation/widget/custom_text_field.dart';
 //import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,24 +23,9 @@ class PaymentScreen extends StatelessWidget {
           children: <Widget>[
             const BalanceDisplay(amount: 3500),
             const SizedBox(height: 8),
-            const ProviderDisplay(title: 'Juegalo.com', iconData: Icons.web_stories),
+            const TransactionFormDisplay(),
             const SizedBox(height: 8),
-            CustomTextField(
-              controller: emailController,
-              labelText: 'Email',
-              hintText: 'Enter email',
-              keyboardType: TextInputType.emailAddress, 
-            ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: amountController,
-              labelText: 'Amount',
-              hintText: 'Enter amount',
-              keyboardType: TextInputType.phone, 
-            ),
-            const Spacer(),
-            RectangularButton(label: 'Pay', onPressed: () => _sendTransaction(context),),
-            const SizedBox(height: 8),
+            
           ],
         ),
       ),
