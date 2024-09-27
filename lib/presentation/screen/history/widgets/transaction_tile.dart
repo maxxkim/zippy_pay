@@ -1,50 +1,207 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class TransactionTile extends StatelessWidget {
+class TransactionTile extends StatefulWidget {
+  final String id;
   final String title;
-  final String subtitle;
-  final String? currency;
+  final String date;
+  final String time;
+  final String status;
+  final String currency;
   final double amount;
-  final VoidCallback onTap;
-  final VoidCallback? onIconTap;
+  final VoidCallback onIconTap;
 
   const TransactionTile({
     Key? key,
+    required this.id,
     required this.title,
-    required this.subtitle,
-    required this.onTap,
+    required this.date,
+    required this.time,
+    required this.onIconTap,
     required this.amount,
-    this.onIconTap,
-    this.currency,
+    required this.status,
+    required this.currency,
   }) : super(key: key);
+
+  @override
+  _TransactionTileState createState() => _TransactionTileState();
+}
+
+class _TransactionTileState extends State<TransactionTile> {
+  bool _isExpanded = false;
+
+  void _toggleExpansion() {
+    setState(() {
+      _isExpanded = !_isExpanded;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: _toggleExpansion,
       child: Container(
         margin: const EdgeInsets.only(bottom: 8),
-        padding: const EdgeInsets.only(top:4.0, bottom: 4.0),
         decoration: BoxDecoration(
-          color: Colors.indigo[100],
+          color: Theme.of(context).colorScheme.tertiaryContainer,
           borderRadius: BorderRadius.zero,
         ),
-        child: ListTile(
-          title: Text(
-            title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo[900]),
-          ),
-          subtitle: Text(subtitle),
-          leading: ElevatedButton(
-            onPressed: onIconTap ?? onTap,
-            style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-              padding: const EdgeInsets.all(16),
-              backgroundColor: Colors.indigo[900],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              title: Text(
+                widget.title, // Используем переданное название транзакции
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              subtitle: Text(
+                widget.date+" "+widget.time, // Используем переданную подстроку
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              leading: SvgPicture.asset(
+                'assets/images/icon_transaction_background.svg',
+                height: 48.0,
+                width: 48.0,
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '${widget.currency ?? ''}${widget.amount.toStringAsFixed(2)}', // Форматируем сумму с валютой
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  SizedBox(width: 8.0), // Добавляем немного отступа между текстом и иконкой
+                  GestureDetector(
+                    onTap: widget.onIconTap, // Вызываем переданный обработчик
+                    child: SvgPicture.asset(
+                      'assets/images/icon_receipt.svg', // Замените на путь к вашей иконке чека
+                      height: 24.0, // Высота иконки
+                      width: 24.0, // Ширина иконки
+                    ),
+                  ),
+                ],
+              ),
             ),
-            child: const Icon(Icons.payment, color: Colors.white, size: 30),
-          ),
-          trailing:  Text('${amount.toString()} $currency', style: const TextStyle(fontSize: 20)),
+            if (_isExpanded)
+              Container(
+                padding: EdgeInsets.all(12),
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Распределяем пространство между колонками
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start, // Выравниваем по левому краю
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'Transaction ID: ', // Замените на необходимую информацию
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            Text(
+                              widget.id, // Замените на необходимую информацию
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Amount: ', // Замените на необходимую информацию
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            Text(
+                              widget.currency! + widget.amount.toString(), // Замените на необходимую информацию
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Date: ', // Замените на необходимую информацию
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            Text(
+                              widget.date, // Замените на необходимую информацию
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Time: ', // Замените на необходимую информацию
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            Text(
+                              widget.time, // Замените на необходимую информацию
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 48),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end, // Выравниваем по правому краю
+                      children: [
+                        Text(
+                          'Status: ' + widget.status, // Замените на необходимую информацию
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/images/icon_support.svg',
+                                  height: 24.0,
+                                  width: 24.0,
+                                ),
+                                Text(
+                                  'Help', // Замените на необходимую информацию
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 8),
+                            Column(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/images/icon_copy.svg',
+                                  height: 24.0,
+                                  width: 24.0,
+                                ),
+                                Text(
+                                  'Copy', // Замените на необходимую информацию
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 8),
+                            Column(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/images/icon_share.svg',
+                                  height: 24.0,
+                                  width: 24.0,
+                                ),
+                                Text(
+                                  'Share', // Замените на необходимую информацию
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+          ],
         ),
       ),
     );

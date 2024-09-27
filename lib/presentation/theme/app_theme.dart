@@ -28,8 +28,9 @@ final ThemeData appTheme = ThemeData(
 
   textTheme: const TextTheme(
     titleSmall: TextStyle(color: bluePurpleColor, fontSize: 8, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
+    titleMedium: TextStyle(color: bluePurpleColor, fontSize: 12, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     bodySmall: TextStyle(color: blackColor, fontSize: 10, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
-    bodyMedium: TextStyle(color: blackColor, fontSize: 14, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
+    bodyMedium: TextStyle(color: blackColor, fontSize: 12, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
     bodyLarge: TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
     headlineSmall: TextStyle(color: bluePurpleColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     headlineMedium: TextStyle(color: bluePurpleColor, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),

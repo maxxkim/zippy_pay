@@ -3,14 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
  
-class DasboardDisplay extends StatefulWidget {
+class DasboardDisplay extends StatelessWidget {
   const DasboardDisplay({super.key});
 
-  @override
-  _DasboardDisplayState createState() => _DasboardDisplayState();
-}
-
-class _DasboardDisplayState extends State<DasboardDisplay> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,7 +13,7 @@ class _DasboardDisplayState extends State<DasboardDisplay> {
         // Левый контейнер с балансом
         Expanded(
           child: Container(
-            height: 168,
+            height: 176,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.secondaryContainer,
               borderRadius: BorderRadius.circular(32),
@@ -64,7 +59,7 @@ class _DasboardDisplayState extends State<DasboardDisplay> {
                 ),
                 const SizedBox(height: 8.0),
                 Container(
-                  height: 56.0,
+                  height: 64.0,
                   decoration: BoxDecoration(  
                     color: Theme.of(context).colorScheme.primary,
                     borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),

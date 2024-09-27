@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:zippy/presentation/screen/history/widgets/transaction_tile.dart';
 
 class TransactionsInfoDisplay extends StatelessWidget {
   const TransactionsInfoDisplay({super.key});
@@ -79,39 +80,20 @@ class TransactionsInfoDisplay extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 20,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => context.go('/dashboard/infoDashboard'),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 4),
-                      padding: const EdgeInsets.all(4.0),
+                  return Container(
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.tertiaryContainer,
                         borderRadius: BorderRadius.zero,
                       ),
-                      child: ListTile(
-                        title: Text(
-                          'Transaction #${index + 1}',
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        subtitle: Text('12 September 2024 6:30 PM', style: Theme.of(context).textTheme.bodySmall),
-                        leading: SvgPicture.asset(
-                          'assets/images/icon_transaction_background.svg',
-                          height: 48.0,
-                          width: 48.0,
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text('+1800.08', style: Theme.of(context).textTheme.labelLarge),
-                            SizedBox(width: 8.0), // Добавляем немного отступа между текстом и иконкой
-                            SvgPicture.asset(
-                              'assets/images/icon_receipt.svg', // Замените на путь к вашей иконке чека
-                              height: 24.0, // Высота иконки
-                              width: 24.0, // Ширина иконки
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: TransactionTile(
+                        id: '#123456789',
+                        title: 'Transaction #${index + 1}',
+                        date: '12 September 2024',
+                        time: '16:30',
+                        currency: '\$',
+                        status: 'completed',
+                        amount: 1800.08,
+                        onIconTap: () => context.go('/dashboard/infoDashboard'),
                     ),
                   );
                 },
@@ -120,16 +102,19 @@ class TransactionsInfoDisplay extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                    height: 56.0,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-                      borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "View All",
-                        style: Theme.of(context).textTheme.displayMedium,
+                  child: GestureDetector(
+                    onTap: () => context.go('/dashboard/history'),
+                    child: Container(
+                      height: 56.0,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "View All",
+                          style: Theme.of(context).textTheme.displayMedium,
+                        ),
                       ),
                     ),
                   ),
