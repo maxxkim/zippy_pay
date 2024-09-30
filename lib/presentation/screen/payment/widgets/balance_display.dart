@@ -12,7 +12,7 @@ class BalanceDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 168,
+      height: 144,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: BorderRadius.circular(32),
@@ -47,7 +47,7 @@ class BalanceDisplay extends StatelessWidget {
           ),
           const SizedBox(height: 8.0),
           Container(
-            height: 64.0,
+            height: 40.0,
             width: double.infinity, // Устанавливаем ширину равной родительскому контейнеру
             decoration: BoxDecoration(  
               color: Theme.of(context).colorScheme.primary,

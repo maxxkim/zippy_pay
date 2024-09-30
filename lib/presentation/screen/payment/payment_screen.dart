@@ -3,8 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:zippy/presentation/screen/payment/widgets/balance_display.dart';
 import 'package:zippy/presentation/screen/payment/widgets/provider_display.dart';
 import 'package:zippy/presentation/screen/payment/widgets/transaction_form_display.dart';
-import 'package:zippy/presentation/widget/custom_rectangular_button.dart';
-import 'package:zippy/presentation/widget/custom_text_field.dart';
+import 'package:zippy/presentation/widget/custom_circular_button.dart';
+import 'package:zippy/presentation/widget/custom_contact_button.dart';
+import 'package:zippy/presentation/widget/custom_contact_button_row.dart';
 //import 'package:flutter_bloc/flutter_bloc.dart';
 //import 'package:zippy/presentation/bloc/dashboard/dashboard_cubit.dart';
 
@@ -17,12 +18,47 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('New payment')),
-      body: Padding(
+      body:  Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
             const BalanceDisplay(amount: 3500),
-            const SizedBox(height: 8),
+            Center(
+        child: ContactButtonRow(
+          buttons: [
+            ContactButton(
+              color: Theme.of(context).colorScheme.primary,
+              label: 'Home',
+              icon: Icons.home,
+              subtitle: ' New Contact',
+            ),
+            ContactButton(
+              color: Theme.of(context).colorScheme.primary,
+              label: 'Search',
+              icon: Icons.search,
+              subtitle: 'New Transaction',
+            ),
+            ContactButton(
+              color: Theme.of(context).colorScheme.tertiaryContainer,
+              label: 'Profile',
+              icon: Icons.person,
+              subtitle: 'Enrique Iglesias',
+            ),
+            ContactButton(
+              color: Theme.of(context).colorScheme.tertiaryContainer,
+              label: 'Settings',
+              icon: Icons.person,
+              subtitle: 'Lionel Messi',
+            ),
+            ContactButton(
+              label: 'Settings',
+              color: Theme.of(context).colorScheme.tertiary,
+              icon: Icons.person,
+              subtitle: 'Juan Peron',
+            ),
+          ],
+        ),
+      ),
             const TransactionFormDisplay(),
             const SizedBox(height: 8),
             

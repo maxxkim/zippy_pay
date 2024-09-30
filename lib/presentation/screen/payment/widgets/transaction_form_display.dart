@@ -10,6 +10,8 @@ class TransactionFormDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController amountController = TextEditingController();
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.tertiaryContainer,
@@ -25,15 +27,15 @@ class TransactionFormDisplay extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 8),
-                CustomTextField(controller: TextEditingController(), labelText: 'Mobile number or Email'),
-                const SizedBox(height: 8),
-                CustomTextField(controller: TextEditingController(), labelText: 'Amount'),
+                CustomTextField(controller: emailController, labelText: 'Mobile number or Email'),
+                const SizedBox(height: 16),
+                CustomTextField(controller: amountController, labelText: 'Amount', icon: SvgPicture.asset('assets/images/icon_coins.svg', width: 8, height: 8,),),
               ],
             ),
           ),
           const SizedBox(height: 8.0),
           Container(
-            height: 64.0,
+            height: 40.0,
             width: double.infinity, // Устанавливаем ширину равной родительскому контейнеру
             decoration: BoxDecoration(  
               color: Theme.of(context).colorScheme.primary,
