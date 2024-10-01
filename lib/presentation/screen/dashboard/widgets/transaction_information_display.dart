@@ -45,12 +45,19 @@ class TransactionsInfoDisplay extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    height: 56.0,
+                    height: 48.0,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondaryFixed,
-                      borderRadius: const BorderRadius.vertical(top: Radius.circular(32), bottom: Radius.circular(32)),
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      border: Border.all(
+                        color: Theme.of(context).colorScheme.primary, // Цвет рамки
+                        width: 1.0, // Толщина рамки
+                      ),
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(16),
+                        bottom: Radius.circular(16),
+                      ),
                     ),
-                    child: Padding(
+                    child:Padding(
                       padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                       child: Center(
                         child: ListView.builder(
@@ -80,21 +87,26 @@ class TransactionsInfoDisplay extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 20,
                 itemBuilder: (context, index) {
-                  return Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.tertiaryContainer,
-                        borderRadius: BorderRadius.zero,
+                  return Column(
+                    children: [
+                      Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.tertiaryContainer,
+                            borderRadius: BorderRadius.zero,
+                          ),
+                          child: TransactionTile(
+                            id: '#123456789',
+                            title: 'Transaction #${index + 1}',
+                            date: 'Sep 12, 2024',
+                            time: '6:30 PM',
+                            currency: '\$',
+                            status: 'completed',
+                            amount: 1800.08,
+                            onIconTap: () => context.go('/dashboard/infoDashboard'),
+                        ),
                       ),
-                      child: TransactionTile(
-                        id: '#123456789',
-                        title: 'Transaction #${index + 1}',
-                        date: '12 September 2024',
-                        time: '16:30',
-                        currency: '\$',
-                        status: 'completed',
-                        amount: 1800.08,
-                        onIconTap: () => context.go('/dashboard/infoDashboard'),
-                    ),
+                      Container(height: 1, color: Theme.of(context).scaffoldBackgroundColor,),
+                    ],
                   );
                 },
               ),
@@ -107,13 +119,17 @@ class TransactionsInfoDisplay extends StatelessWidget {
                     child: Container(
                       height: 56.0,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
+                        border: Border.all(
+                        color: Theme.of(context).colorScheme.tertiary, // Цвет рамки
+                        width: 1.0, // Толщина рамки
+                      ),
+                        color: Theme.of(context).colorScheme.tertiaryContainer,
+                        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(16)),
                       ),
                       child: Center(
                         child: Text(
                           "View All",
-                          style: Theme.of(context).textTheme.displayMedium,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
                     ),

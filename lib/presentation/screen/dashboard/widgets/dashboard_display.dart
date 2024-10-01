@@ -13,10 +13,10 @@ class DasboardDisplay extends StatelessWidget {
         // Левый контейнер с балансом
         Expanded(
           child: Container(
-            height: 176,
+            height: 160,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.secondaryContainer,
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,10 +59,10 @@ class DasboardDisplay extends StatelessWidget {
                 ),
                 const SizedBox(height: 8.0),
                 Container(
-                  height: 64.0,
+                  height: 48.0,
                   decoration: BoxDecoration(  
                     color: Theme.of(context).colorScheme.primary,
-                    borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
+                    borderRadius: const BorderRadius.vertical(bottom: Radius.circular(16)),
                   ),
                   child: Row(children: [
                     const SizedBox(width: 32.0),
@@ -89,34 +89,50 @@ class DasboardDisplay extends StatelessWidget {
                       ),
                     );*/
                   },
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/icon_scan.svg',
-                        height: 48.0,
-                        width: 48.0,
-                      ),
-                      const SizedBox(height: 4),
-                      Text("Scan", style: Theme.of(context).textTheme.titleSmall),
-                    ],
+                child: Container(
+                  height: 72,
+                  width: 72,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondaryContainer,
+                    borderRadius: BorderRadius.circular(16),
                   ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/images/icon_scan.svg',
+                          height: 24.0,
+                          width: 24.0,
+                        ),
+                        const SizedBox(height: 4),
+                        Text("Scan", style: Theme.of(context).textTheme.bodyMedium),
+                      ],
+                    ),
+                ),
                 ),
               const SizedBox(height: 16),
               GestureDetector(
                 onTap: () => context.go('/dashboard/payment'),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/icon_transfer.svg',
-                        height: 48.0,
-                        width: 48.0,
-                      ),
-                      const SizedBox(height: 4),
-                      Text("Transfer", style: Theme.of(context).textTheme.titleSmall),
-                    ],
+                child: Container(
+                  height: 72,
+                  width: 72,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondaryContainer,
+                    borderRadius: BorderRadius.circular(16),
                   ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/images/icon_transfer.svg',
+                          height: 24.0,
+                          width: 24.0,
+                        ),
+                        const SizedBox(height: 4),
+                        Text("Transfer", style: Theme.of(context).textTheme.bodyMedium),
+                      ],
+                    ),
+                ),
                 ),
             ],
           ),

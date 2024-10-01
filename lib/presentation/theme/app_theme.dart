@@ -35,6 +35,7 @@ final ThemeData appTheme = ThemeData(
     bodyLarge: TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
     headlineSmall: TextStyle(color: bluePurpleColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     headlineMedium: TextStyle(color: bluePurpleColor, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
+    displaySmall: TextStyle(color: whiteColor, fontSize: 12, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     displayMedium: TextStyle(color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     labelSmall: TextStyle(color: lightGreyColor, fontSize: 12, fontWeight: FontWeight.w300),
     labelMedium: TextStyle(color: lightGreyColor, fontSize: 16, fontWeight: FontWeight.w300),
@@ -42,7 +43,8 @@ final ThemeData appTheme = ThemeData(
   ),
 
   appBarTheme: const AppBarTheme(
-    backgroundColor: bluePurpleColor,
+    toolbarHeight: 0,
+    color: whiteColor,
     foregroundColor: whiteColor,
   ),
 
@@ -54,6 +56,7 @@ final ThemeData appTheme = ThemeData(
     ),
     padding: const EdgeInsets.symmetric(vertical: 16.0),
   ),
+
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(

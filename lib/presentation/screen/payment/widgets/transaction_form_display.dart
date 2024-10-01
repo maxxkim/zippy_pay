@@ -13,9 +13,10 @@ class TransactionFormDisplay extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController amountController = TextEditingController();
     return Container(
+      height: 212,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.tertiaryContainer,
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,27 +30,38 @@ class TransactionFormDisplay extends StatelessWidget {
                 const SizedBox(height: 8),
                 CustomTextField(controller: emailController, labelText: 'Mobile number or Email'),
                 const SizedBox(height: 16),
-                CustomTextField(controller: amountController, labelText: 'Amount', icon: SvgPicture.asset('assets/images/icon_coins.svg', width: 8, height: 8,),),
+                CustomTextField(controller: amountController, labelText: 'Amount', icon: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: SvgPicture.asset('assets/images/icon_coins.svg', width: 8, height: 8,),
+                ),),
               ],
             ),
           ),
           const SizedBox(height: 8.0),
-          Container(
-            height: 40.0,
-            width: double.infinity, // Устанавливаем ширину равной родительскому контейнеру
-            decoration: BoxDecoration(  
-              color: Theme.of(context).colorScheme.primary,
-              borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
-            ),
-            child: Row( // Используем Row для выравнивания текста и иконки
-              mainAxisAlignment: MainAxisAlignment.center, // Центрируем содержимое
-              children: [
-                Text(
-                  "Continue",
-                  style: Theme.of(context).textTheme.displayMedium,
-                ),
-              ],
-            ),
+          Row( // Используем Row для выравнивания текста и иконки
+            mainAxisAlignment: MainAxisAlignment.center, // Центрируем содержимое
+            children: [
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "To transfer the amount of (amount)\nto the number (number), press continue.",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      const SizedBox(width: 12.0),
+                      FilledButton(
+                        onPressed: () => print("hui"),
+                        child: Text(
+                          "Continue",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),

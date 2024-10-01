@@ -41,7 +41,6 @@ class _TransactionTileState extends State<TransactionTile> {
     return GestureDetector(
       onTap: _toggleExpansion,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.tertiaryContainer,
           borderRadius: BorderRadius.zero,
@@ -60,8 +59,8 @@ class _TransactionTileState extends State<TransactionTile> {
               ),
               leading: SvgPicture.asset(
                 'assets/images/icon_transaction_background.svg',
-                height: 48.0,
-                width: 48.0,
+                height: 36.0,
+                width: 36.0,
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,

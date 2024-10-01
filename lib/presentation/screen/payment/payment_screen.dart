@@ -19,7 +19,7 @@ class PaymentScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('New payment')),
       body:  Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
             const BalanceDisplay(amount: 3500),
@@ -28,39 +28,44 @@ class PaymentScreen extends StatelessWidget {
           buttons: [
             ContactButton(
               color: Theme.of(context).colorScheme.primary,
-              label: 'Home',
-              icon: Icons.home,
-              subtitle: ' New Contact',
+              icon: Icons.add,
+              subtitle: 'New\nContact',
             ),
             ContactButton(
               color: Theme.of(context).colorScheme.primary,
-              label: 'Search',
-              icon: Icons.search,
-              subtitle: 'New Transaction',
+              icon: Icons.arrow_right_alt,
+              subtitle: 'New\nTransaction',
             ),
             ContactButton(
               color: Theme.of(context).colorScheme.tertiaryContainer,
-              label: 'Profile',
               icon: Icons.person,
-              subtitle: 'Enrique Iglesias',
+              subtitle: 'Enrique\nIglesias',
             ),
             ContactButton(
               color: Theme.of(context).colorScheme.tertiaryContainer,
-              label: 'Settings',
               icon: Icons.person,
-              subtitle: 'Lionel Messi',
+              subtitle: 'Lionel\nMessi',
             ),
             ContactButton(
-              label: 'Settings',
-              color: Theme.of(context).colorScheme.tertiary,
+              color: Theme.of(context).colorScheme.tertiaryContainer,
               icon: Icons.person,
-              subtitle: 'Juan Peron',
+              subtitle: 'Juan\nPeron',
+            ),
+            ContactButton(
+              color: Theme.of(context).colorScheme.tertiaryContainer,
+              icon: Icons.person,
+              subtitle: 'John\nDoe',
+            ),
+            ContactButton(
+              color: Theme.of(context).colorScheme.tertiaryContainer,
+              icon: Icons.person,
+              subtitle: 'Ximena\nMerino',
             ),
           ],
         ),
       ),
             const TransactionFormDisplay(),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             
           ],
         ),

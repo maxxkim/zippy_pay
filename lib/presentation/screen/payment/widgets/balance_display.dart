@@ -15,7 +15,7 @@ class BalanceDisplay extends StatelessWidget {
       height: 144,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondaryContainer,
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ class BalanceDisplay extends StatelessWidget {
             width: double.infinity, // Устанавливаем ширину равной родительскому контейнеру
             decoration: BoxDecoration(  
               color: Theme.of(context).colorScheme.primary,
-              borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
+              borderRadius: const BorderRadius.vertical(bottom: Radius.circular(16)),
             ),
             child: Row( // Используем Row для выравнивания текста и иконки
               mainAxisAlignment: MainAxisAlignment.center, // Центрируем содержимое

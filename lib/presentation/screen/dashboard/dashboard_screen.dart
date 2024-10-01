@@ -14,7 +14,6 @@ class DashboardScreen extends StatelessWidget {
       create: (_) => DashboardCubit(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Zippy Pay'),
           actions: [
             IconButton(
               icon: const Icon(Icons.logout),
@@ -23,26 +22,38 @@ class DashboardScreen extends StatelessWidget {
               },
             ),
           ],
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          toolbarHeight: 0,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               const DasboardDisplay(),
-              const SizedBox(height: 32),
-              Align(alignment: Alignment.centerLeft, child: Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Text('Transactions information',style: Theme.of(context).textTheme.bodyLarge),
-              )),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
               Row(
                 children: [
-                  FilledButton(onPressed: () => print("hui"), child: const Text("Period"),),
+                  FilledButton(
+                    onPressed: () => print("hui"),
+                    child: const Text("Period"),
+                  ),
                   const Spacer(),
-                  OutlinedButton(onPressed: () => print("hui"), child: const Text("Deposit")),
+                  FilledButton(
+                    onPressed: () => print("hui"),
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(Theme.of(context).colorScheme.secondaryContainer), // Задаем цвет из темы
+                    ),
+                    child: Text("Deposit", style: Theme.of(context).textTheme.bodyMedium,),
+                  ),
                   const Spacer(),
-                  OutlinedButton(onPressed: () => print("hui"), child: const Text("Withdrawal")),
+                  FilledButton(
+                    onPressed: () => print("hui"),
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(Theme.of(context).colorScheme.secondaryContainer), // Задаем цвет из темы
+                    ),
+                    child: Text("Withdrawal", style: Theme.of(context).textTheme.bodyMedium,),
+                  ),
                 ],
               ),
               const SizedBox(height: 8),
