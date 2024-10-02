@@ -9,6 +9,7 @@ const Color lightAquamarineColor = Color(0xFFDDEEEB);
 const Color midLightAquamarineColor = Color(0xFF8BD8CD);
 const Color greenColor = Color(0xFF4DD0A1);
 const Color redColor = Color(0xFFDC4949);
+const Color lightRedColor = Color.fromARGB(1, 238, 221, 221);
 const Color whiteColor = Color(0xFFFFFFFF);
 
 final ThemeData appTheme = ThemeData(
@@ -24,6 +25,7 @@ final ThemeData appTheme = ThemeData(
     secondaryContainer: lightAquamarineColor, 
     tertiary: whiteColor,
     tertiaryContainer: lightGreyColor,
+    tertiaryFixed: lightRedColor,
   ), 
 
   textTheme: const TextTheme(

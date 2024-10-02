@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:zippy/presentation/screen/dashboard/widgets/transaction_information_display.dart';
+import 'package:zippy/presentation/widget/custom_text_field.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -12,21 +14,26 @@ class HistoryScreen extends StatelessWidget {
     DateTime? endDate;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('History'),
-      ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        toolbarHeight: 0,
+        ),
       body: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
-              TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.indigo[100],
-                  hintText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                  border: InputBorder.none
-                ),
-                style: TextStyle(fontSize: 16),
+                CustomTextField(
+                hintText: "Search",
+                controller: TextEditingController(),
+              ),
+              Row(
+                children: [
+                  Container(
+                    height: 24,
+                    width: 24,
+                    color: Theme.of(context).colorScheme.secondaryContainer,
+                  ),
+           
+                ],
               ),
             const SizedBox(height: 8),
             Row(
@@ -76,58 +83,45 @@ class HistoryScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-
-            // Окошки для отображения расходов и доходов
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Column(
-                  children: [
-                    Text('Expense', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.indigo[900])),
-                    Text('500'), // Замените на вычисленные расходы
-                  ],
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondaryContainer,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    padding: const EdgeInsets.all(16.0), // Добавьте отступы для лучшего вида
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start, // Выровнять содержимое по левому краю
+                      children: [
+                        Text('Expense'),
+                        Text('\$ 500', style: Theme.of(context).textTheme.titleLarge), // Замените на вычисленные расходы
+                      ],
+                    ),
+                  ),
                 ),
-                Column(
-                  children: [
-                    Text('Income', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.indigo[900])),
-                    Text('1000'), // Замените на вычисленные доходы
-                  ],
+                const SizedBox(width: 16), // Отступ между контейнерами (при желании)
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondaryContainer,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    padding: const EdgeInsets.all(16.0), // Добавьте отступы для лучшего вида
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start, // Выровнять содержимое по левому краю
+                      children: [
+                        Text('Income'),
+                        Text('\$ 1000', style: Theme.of(context).textTheme.titleLarge), // Замените на вычисленные доходы
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 16),
-
-            // Прокручиваемый список
-            Expanded(
-              child: ListView.builder(
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return GestureDetector(onTap: () =>  context.go('/dashboard/history/infoHistory'), 
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 8),
-                      padding: const EdgeInsets.all(4.0),
-                      decoration: BoxDecoration(
-                        color: Colors.indigo[100],
-                        borderRadius: BorderRadius.zero,
-                      ), 
-                      child: ListTile(
-                        title: Text('Transaction #${index + 1}', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo[900]),),
-                        subtitle: const Text('26-8-2024 11:02'),
-                        leading:  ElevatedButton(
-                          onPressed: () {
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            padding: const EdgeInsets.all(16), 
-                            backgroundColor: Colors.indigo[900],
-                          ),
-                          child: const Icon(Icons.payment, color: Colors.white, size: 30),
-                          ),
-                        trailing: const Text('+13.12 ₽', style: TextStyle(fontSize: 20)),
-                  )));
-                },
-              ),
-            ),
+            const TransactionsInfoDisplay(),
           ],
         ),
       ),

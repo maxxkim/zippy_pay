@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String labelText;
+  final String? labelText;
   final String? hintText;
   final bool? autofocus;
   final Widget? icon; // Иконка будет передаваться как параметр
@@ -11,7 +11,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
     required this.controller,
-    required this.labelText,
+    this.labelText,
     this.autofocus,
     this.hintText,
     this.icon, 
