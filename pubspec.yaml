@@ -35,6 +35,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  fonts:
+    - family: RobotoFlex
+      fonts:
+        - asset: assets/fonts/RobotoFlexVF.ttf
 
 flutter_native_splash:
   background_image: "assets/splash_screen.png"

@@ -105,7 +105,7 @@ class HistoryScreen extends StatelessWidget {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondaryContainer,
+                      color: Theme.of(context).colorScheme.tertiaryFixed,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     padding: const EdgeInsets.all(16.0), // Добавьте отступы для лучшего вида

@@ -141,7 +141,7 @@ class _TransactionTileState extends State<TransactionTile> {
                         ),
                       ],
                     ),
-                    const SizedBox(width: 48),
+                    const SizedBox(width: 24),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end, // Выравниваем по правому краю
                       children: [

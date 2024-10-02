@@ -58,14 +58,14 @@ class PaymentInfoScreen extends StatelessWidget {
                       children: [
                         Text("Balance: ", style: Theme.of(context).textTheme.titleMedium),
                         Text(
-                          '1356.32\$',
+                          '\$ 1356.32',
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
                         Text(" → ", style: Theme.of(context).textTheme.titleMedium),
                         Text(
-                          '1342.24\$',
+                          '\$ 1342.24',
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ],
@@ -124,13 +124,16 @@ class PaymentInfoScreen extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            RectangularButton(
-              label: "Home",
-              onPressed: () {
-                context.go('/dashboard');
-              },
+            Padding(
+              padding: const EdgeInsets.only(right: 40,left: 40),
+              child: RectangularButton(
+                label: "Home",
+                onPressed: () {
+                  context.go('/dashboard');
+                },
+              ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 88),
           ],
         ),
       ),

@@ -7,10 +7,12 @@ const Color darkGreyColor = Color(0xFF878787);
 const Color lightGreyColor = Color(0xFFEFEFEF);
 const Color lightAquamarineColor = Color(0xFFDDEEEB);
 const Color midLightAquamarineColor = Color(0xFF8BD8CD);
-const Color greenColor = Color(0xFF4DD0A1);
+const Color greenColor = Color(0xFF54C099);
 const Color redColor = Color(0xFFDC4949);
-const Color lightRedColor = Color.fromARGB(1, 238, 221, 221);
+const Color lightRedColor = Color(0xFFEEDDDD);
 const Color whiteColor = Color(0xFFFFFFFF);
+const Color lightYellowColor = Color(0xFFFFF7E3);
+const Color yellowColor = Color(0xFFFFAB6D);
 
 final ThemeData appTheme = ThemeData(
   primaryColor: bluePurpleColor,
@@ -29,19 +31,19 @@ final ThemeData appTheme = ThemeData(
   ), 
 
   textTheme: const TextTheme(
-    titleSmall: TextStyle(color: bluePurpleColor, fontSize: 8, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-    titleMedium: TextStyle(color: bluePurpleColor, fontSize: 12, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-    titleLarge: TextStyle(color: bluePurpleColor, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-    bodySmall: TextStyle(color: blackColor, fontSize: 10, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
-    bodyMedium: TextStyle(color: blackColor, fontSize: 12, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
-    bodyLarge: TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'Roboto'),
-    headlineSmall: TextStyle(color: bluePurpleColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-    headlineMedium: TextStyle(color: bluePurpleColor, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-    displaySmall: TextStyle(color: whiteColor, fontSize: 12, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-    displayMedium: TextStyle(color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-    labelSmall: TextStyle(color: lightGreyColor, fontSize: 12, fontWeight: FontWeight.w300),
-    labelMedium: TextStyle(color: lightGreyColor, fontSize: 16, fontWeight: FontWeight.w300),
-    labelLarge: TextStyle(color: greenColor, fontSize: 16, fontWeight: FontWeight.bold),
+    titleSmall: TextStyle(color: bluePurpleColor, fontSize: 12, fontWeight: FontWeight.bold, fontFamily: 'RobotoFlex'),
+    titleMedium: TextStyle(color: bluePurpleColor, fontSize: 14, fontWeight: FontWeight.w500, fontFamily: 'RobotoFlex'),
+    titleLarge: TextStyle(color: bluePurpleColor, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'RobotoFlex'),
+    bodySmall: TextStyle(color: blackColor, fontSize: 10, fontWeight: FontWeight.w300, fontFamily: 'RobotoFlex'),
+    bodyMedium: TextStyle(color: blackColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'RobotoFlex'), 
+    bodyLarge: TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'RobotoFlex'),
+    headlineSmall: TextStyle(color: bluePurpleColor, fontSize: 16, fontWeight: FontWeight.w500, fontFamily: 'RobotoFlex'), 
+    headlineMedium: TextStyle(color: bluePurpleColor, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'RobotoFlex'),
+    displaySmall: TextStyle(color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold, fontFamily: 'RobotoFlex'),
+    displayMedium: TextStyle(color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'RobotoFlex'),
+    labelSmall: TextStyle(color: lightGreyColor, fontSize: 12, fontWeight: FontWeight.w300, fontFamily: 'RobotoFlex'),
+    labelMedium: TextStyle(color: lightGreyColor, fontSize: 16, fontWeight: FontWeight.w300, fontFamily: 'RobotoFlex'),
+    labelLarge: TextStyle(color: greenColor, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'RobotoFlex'),
   ),
 
   appBarTheme: const AppBarTheme(
